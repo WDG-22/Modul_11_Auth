@@ -1,4 +1,4 @@
-import { email, z } from 'zod/v4';
+import { z } from 'zod/v4';
 import { passwordRegex } from '../utils/regex.js';
 
 // Reading list entry schema
