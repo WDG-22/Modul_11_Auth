@@ -3,12 +3,13 @@ import { getAll, createOne, getOne, updateOne, deleteOne } from '../controllers/
 import { Book } from '../models/index.js';
 import validate from '../middlewares/validate.js';
 import { bookSchema } from '../zod-schemas/book.schema.js';
+import authenticate from '../middlewares/authenticate.js';
 
 const booksRouter = Router();
 
 booksRouter.get('/', getAll(Book));
 
-booksRouter.post('/', validate(bookSchema), createOne(Book));
+booksRouter.post('/', authenticate, validate(bookSchema), createOne(Book));
 
 booksRouter.get('/:id', getOne(Book));
 booksRouter.put('/:id', validate(bookSchema), updateOne(Book));

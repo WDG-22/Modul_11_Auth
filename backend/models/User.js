@@ -17,6 +17,11 @@ const userSchema = new Schema({
   firstName: String,
   lastName: String,
   readingList: [readingListEntry],
+  email: String,
+  password: {
+    type: String,
+    select: false,
+  },
 });
 
 const User = model('user', userSchema);

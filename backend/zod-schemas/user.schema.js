@@ -1,4 +1,5 @@
-import { z } from 'zod/v4';
+import { email, z } from 'zod/v4';
+import { passwordRegex } from '../utils/regex.js';
 
 // Reading list entry schema
 const readingListEntrySchema = z.object({
@@ -8,10 +9,23 @@ const readingListEntrySchema = z.object({
 
 // User schema
 const userSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
+  firstName: z.string().max(512),
+  lastName: z.string().max(512),
   readingList: z.array(readingListEntrySchema).default([]),
+  email: z.email(),
+  password: z.string().min(8).max(512).regex(passwordRegex, {
+    error:
+      'Password needs to have at least 8 characters, one lowercase, one uppercase, one number and a special character.',
+  }),
+});
+
+const loginSchema = z.object({
+  email: z.email(),
+  password: z.string().min(8).max(512).regex(passwordRegex, {
+    error:
+      'Password needs to have at least 8 characters, one lowercase, one uppercase, one number and a special character.',
+  }),
 });
 
 // Export schemas
-export { readingListEntrySchema, userSchema };
+export { readingListEntrySchema, userSchema, loginSchema };

@@ -3,6 +3,7 @@ import { Book, User } from '../models/index.js';
 import ErrorResponse from '../utils/ErrorResponse.js';
 
 const getAllUsers = async (req, res) => {
+  // const users = await User.find().select("-password");
   const users = await User.find();
   res.json({ data: users });
 };

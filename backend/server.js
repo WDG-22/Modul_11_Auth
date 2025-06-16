@@ -2,11 +2,12 @@ import express from 'express';
 import { mongoose } from 'mongoose';
 import cors from 'cors';
 import chalk from 'chalk';
+import cookieParser from 'cookie-parser';
 import dbInit from './db/index.js';
 import ErrorResponse from './utils/ErrorResponse.js';
 import errorHandler from './middlewares/errorHandler.js';
 
-import { userRouter, booksRouter } from './routers/index.js';
+import { authRouter, userRouter, booksRouter } from './routers/index.js';
 
 await dbInit();
 
@@ -14,7 +15,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(cors());
-app.use(express.json()); // app.use(bodyParser)
+app.use(express.json(), cookieParser()); // app.use(bodyParser)
 
 app.get('/', async (req, res) => {
   const dbResponse = await mongoose.connection.db.admin().ping();
@@ -22,6 +23,7 @@ app.get('/', async (req, res) => {
   res.json({ message: 'Running', dbResponse });
 });
 
+app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/books', booksRouter);
 
