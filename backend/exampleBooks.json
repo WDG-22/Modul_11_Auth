@@ -1,0 +1,45 @@
+[
+  {
+    "author": "George R.R. Martin",
+    "title": "A Game of Thrones",
+    "description": "The first book in the epic fantasy series A Song of Ice and Fire. Set in the fictional continents of Westeros and Essos, it follows the political machinations of noble families vying for control of the Iron Throne of the Seven Kingdoms.",
+    "pageNumber": 694,
+    "year": 1996,
+    "isbn": "978-0-553-10354-0",
+    "genre": ["Fantasy", "Epic Fantasy", "Political Fiction"]
+  },
+  {
+    "author": "Agatha Christie",
+    "title": "Murder on the Orient Express",
+    "description": "Hercule Poirot investigates a murder aboard the famous Orient Express train when it becomes snowbound in the Yugoslav mountains. A classic locked-room mystery with a surprising solution.",
+    "pageNumber": 256,
+    "year": 1934,
+    "isbn": "0-00-712693-5",
+    "genre": ["Mystery", "Crime Fiction", "Detective Fiction"]
+  },
+  {
+    "author": "Isaac Asimov",
+    "title": "Foundation",
+    "description": "The first novel in Asimov's Foundation series, set in a galactic empire on the brink of collapse. Hari Seldon develops psychohistory to predict the future and establish foundations to preserve knowledge through the coming dark age.",
+    "pageNumber": 244,
+    "year": 1951,
+    "isbn": "978-0-553-29335-0",
+    "genre": ["Science Fiction", "Space Opera"]
+  },
+  {
+    "title": "The Odyssey",
+    "description": "An ancient Greek epic poem traditionally attributed to Homer, telling the story of Odysseus's ten-year journey home after the Trojan War. Filled with mythological creatures, gods, and tests of heroism.",
+    "pageNumber": 541,
+    "year": -700,
+    "genre": ["Epic Poetry", "Classical Literature", "Mythology"]
+  },
+  {
+    "author": "Liu Cixin",
+    "title": "The Three-Body Problem",
+    "description": "The first book in the Remembrance of Earth's Past trilogy. Set against the backdrop of China's Cultural Revolution, it explores humanity's first contact with an alien civilization facing the destruction of their home planet.",
+    "pageNumber": 400,
+    "year": 2006,
+    "isbn": "978-0-7653-7706-7",
+    "genre": ["Science Fiction", "Hard Science Fiction", "Chinese Literature"]
+  }
+]
