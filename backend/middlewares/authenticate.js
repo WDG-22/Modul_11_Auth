@@ -19,7 +19,7 @@ const authenticate = async (req, res, next) => {
     // Ist der Token gültig? Wurde er mit unserem SECRET erstellt?
     const { _id } = jwt.verify(token, process.env.JWT_SECRET);
     // OPTIONAL: Hole weitere Userinformationen aus der Datenbank, z.B. Email oder Berechtigungen
-    const user = await User.findById(_id).select('email').lean();
+    const user = await User.findById(_id).select('email role').lean();
     req.user = user;
   } catch (error) {
     // Fehlernachricht anpassen, wenn Token ungültig war

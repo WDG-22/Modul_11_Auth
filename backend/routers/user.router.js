@@ -13,13 +13,17 @@ import {
 import { User } from '../models/index.js';
 import validate from '../middlewares/validate.js';
 import { userSchema } from '../zod-schemas/user.schema.js';
+import hasRole from '../middlewares/hasRole.js';
+import authenticate from '../middlewares/authenticate.js';
 
 const userRouter = Router();
 
 userRouter.get('/', getAll(User));
 userRouter.post('/', validate(userSchema), createOne(User));
 userRouter.get('/:id', getOneUser);
-userRouter.put('/:id', validate(userSchema), updateOne(User));
+
+userRouter.put('/:id', authenticate, hasRole('self'), validate(userSchema), updateOne(User));
+
 userRouter.delete('/:id', deleteOne(User));
 
 userRouter.post('/:userId/books', addBookToReadingList);

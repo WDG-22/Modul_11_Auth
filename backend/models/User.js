@@ -22,6 +22,14 @@ const userSchema = new Schema({
     type: String,
     select: false,
   },
+  role: {
+    type: String,
+    enum: ['admin', 'user', 'librarian'],
+    default: 'user',
+  },
+  // permissions: {
+  //   ["books:read", "books:update"]
+  // }
 });
 
 const User = model('user', userSchema);
