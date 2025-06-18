@@ -30,7 +30,7 @@ const Books = () => {
     <>
       <h1>Books 📚</h1>
       <div className='grid grid-cols-[2rem_1fr_1fr_1fr_2rem] gap-5 my-10'>
-        {/* {status === 'pending' && <span className='loading loading-bars loading-xl col-span-5'></span>} */}
+        {status === 'pending' && <span className='loading loading-bars loading-xl col-span-5'></span>}
         <button onClick={() => setPage((prev) => (prev === 1 ? 7 : prev - 1))} className='btn btn-circle self-center'>
           ❮
         </button>
