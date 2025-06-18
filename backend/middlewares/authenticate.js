@@ -6,8 +6,6 @@ const authenticate = async (req, res, next) => {
   //  Den Token (Ausweis) aus den Cookies oder dm Authorization Header nehmen
   let { token } = req.cookies;
 
-  // console.log('COOKIES ', req.cookies);
-
   const { authorization } = req.headers;
   if (authorization) {
     token = authorization.split(' ')[1];

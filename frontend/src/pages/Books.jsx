@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { ToasterContext } from '../contexts/ToasterContext.jsx';
+import { AuthContext } from '../contexts/AuthContext.jsx';
 
 const Books = () => {
   const [books, setBooks] = useState(null);
   const [page, setPage] = useState(1);
   const [status, setStatus] = useState('unset'); // unset, pending, success, error
   const { toaster } = useContext(ToasterContext);
+
+  const { user, setUser } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -26,6 +29,24 @@ const Books = () => {
     fetchBooks();
   }, [page]);
 
+  const changeReadingList = async (bookId) => {
+    try {
+      const res = await fetch(`http://localhost:8000/users/${user._id}/books`, {
+        method: 'POST',
+        headers: {
+          // Authorization: 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ bookId }),
+        credentials: 'include',
+      });
+      const { message, data } = await res.json();
+      setUser(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <h1>Books 📚</h1>
@@ -36,6 +57,8 @@ const Books = () => {
         </button>
         {books &&
           books.map((book, ind) => {
+            const isOnReadingList = user && user.readingList.some((b) => b.bookRefId === book._id);
+            const method = isOnReadingList ? 'DELETE' : 'POST';
             return (
               <div key={book._id} className='card bg-base-100 w-80 shadow-sm border'>
                 <figure className='px-10 pt-10 min-h-60'>
@@ -46,9 +69,9 @@ const Books = () => {
                   <h3 className='card-title text-sm'>{book.author}</h3>
                   <p>{book.description}</p>
                   <div className='card-actions'>
-                    {true && (
-                      <button onClick={() => alert('CHANGE READING LIST')} className='btn btn-primary'>
-                        {false ? 'Remove from' : 'Add to'} reading List
+                    {user && (
+                      <button onClick={() => changeReadingList(book._id, method)} className='btn btn-primary'>
+                        {isOnReadingList ? 'Remove from' : 'Add to'} reading List
                       </button>
                     )}
                   </div>

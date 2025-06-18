@@ -13,7 +13,7 @@ const setAuthCookie = (res, token) => {
 
   res.cookie('token', token, {
     httpOnly: true,
-    sameSite: 'none',
+    sameSite: 'lax',
     secure,
     expires: new Date(Date.now() + process.env.JWT_EXPIRES_IN * 24 * 60 * 60 * 1000), // ein Tag gültig
   });
@@ -61,4 +61,14 @@ const login = async (req, res) => {
   res.json({ message: 'Hier ist dein Ausweis...', user, token });
 };
 
-export { registerUser, login };
+const logout = (req, res) => {
+  const secure = !['development', 'test'].includes(process.env.NODE_ENV);
+  res.clearCookie('token', {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure,
+  });
+  res.json({ message: 'Logout successful' });
+};
+
+export { registerUser, login, logout };

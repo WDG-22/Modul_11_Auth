@@ -26,8 +26,8 @@ userRouter.put('/:id', authenticate, hasRole('self'), validate(userSchema), upda
 
 userRouter.delete('/:id', deleteOne(User));
 
-userRouter.post('/:userId/books', addBookToReadingList);
-userRouter.put('/:userId/books/:bookId', updateBookStatus);
-userRouter.delete('/:userId/books/:bookId', deleteBookFromReadingList);
+userRouter.post('/:id/books', authenticate, hasRole('self', 'admin'), addBookToReadingList);
+userRouter.put('/:id/books/:bookId', authenticate, hasRole('self', 'admin'), updateBookStatus);
+userRouter.delete('/:id/books/:bookId', authenticate, hasRole('self', 'admin'), deleteBookFromReadingList);
 
 export default userRouter;

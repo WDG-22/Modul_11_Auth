@@ -34,13 +34,13 @@ const deleteUser = async (req, res) => {
 };
 
 const addBookToReadingList = async (req, res) => {
-  const { userId } = req.params;
+  const { id } = req.params;
   const { bookId } = req.body;
 
   const bookExists = await Book.exists({ _id: bookId });
   if (!bookExists) throw new ErrorResponse('Book not in the library', 404);
 
-  const user = await User.findById(userId);
+  const user = await User.findById(id);
   if (!user) throw new ErrorResponse('User not found', 404);
 
   const bookOnListAlready = user.readingList.find((book) => book.bookRefId.toString() === bookId);
