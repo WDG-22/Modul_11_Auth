@@ -34,9 +34,13 @@ const registerUser = async (req, res) => {
   const user = await User.create({ firstName, lastName, email, password: hashedPW });
 
   // console.log(user);
-  // delete user.password
+  delete user.password;
 
-  res.json({ message: 'Go to login' });
+  const token = createToken(user._id);
+
+  setAuthCookie(res, token);
+
+  res.json({ message: 'Go to login', token, user });
 };
 
 const login = async (req, res) => {

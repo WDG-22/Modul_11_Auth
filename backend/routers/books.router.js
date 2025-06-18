@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAll, createOne, getOne, updateOne, deleteOne, getAllBooks } from '../controllers/index.js';
+import { createOne, getOne, updateOne, deleteOne, getAllBooks } from '../controllers/index.js';
 import { Book } from '../models/index.js';
 import validate from '../middlewares/validate.js';
 import { bookSchema } from '../zod-schemas/book.schema.js';

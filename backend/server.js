@@ -14,7 +14,12 @@ await dbInit();
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.ALLOWED_ORIGIN,
+  })
+);
 app.use(express.json(), cookieParser()); // app.use(bodyParser)
 
 app.get('/', async (req, res) => {
