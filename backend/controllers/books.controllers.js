@@ -2,7 +2,20 @@ import { Book } from '../models/index.js';
 import ErrorResponse from '../utils/ErrorResponse.js';
 
 const getAllBooks = async (req, res) => {
-  const books = await Book.find();
+  const { page, limit, search } = req.query;
+
+  const parsedPage = parseInt(page) || 1;
+  const parsedLimit = parseInt(limit) || 10;
+
+  const offset = (parsedPage - 1) * parsedLimit;
+
+  let query = {};
+
+  if (search) {
+    query = { $text: { $search: search } };
+  }
+
+  const books = await Book.find(query).limit(parsedLimit).skip(offset).lean();
   res.json({ data: books });
 };
 

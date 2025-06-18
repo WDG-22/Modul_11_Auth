@@ -28,5 +28,7 @@ const bookSchema = new Schema({
   genre: [{ type: String, maxLength: 50 }],
 });
 
+bookSchema.index({ title: 'text', author: 'text', description: 'text', genre: 'text' });
+
 const Book = model('book', bookSchema);
 export default Book;

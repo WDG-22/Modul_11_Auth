@@ -41,5 +41,95 @@
     "year": 2006,
     "isbn": "978-0-7653-7706-7",
     "genre": ["Science Fiction", "Hard Science Fiction", "Chinese Literature"]
+  },
+  {
+    "author": "J.R.R. Tolkien",
+    "title": "The Fellowship of the Ring",
+    "description": "The first volume of The Lord of the Rings trilogy, following hobbit Frodo Baggins as he begins his quest to destroy the One Ring. A foundational work of modern fantasy literature set in Middle-earth.",
+    "pageNumber": 423,
+    "year": 1954,
+    "isbn": "978-0-547-92822-7",
+    "genre": ["Fantasy", "Epic Fantasy", "Adventure"]
+  },
+  {
+    "author": "Harper Lee",
+    "title": "To Kill a Mockingbird",
+    "description": "A coming-of-age story set in 1930s Alabama, following young Scout Finch as her father, lawyer Atticus Finch, defends a Black man falsely accused of rape. A powerful examination of racial injustice and moral courage.",
+    "pageNumber": 376,
+    "year": 1960,
+    "isbn": "978-0-06-112008-4",
+    "genre": ["Literary Fiction", "Southern Gothic", "Coming-of-age"]
+  },
+  {
+    "author": "Frank Herbert",
+    "title": "Dune",
+    "description": "An epic science fiction novel set on the desert planet Arrakis, following Paul Atreides as he navigates political intrigue, ecological warfare, and mystical powers in a complex galactic feudal system.",
+    "pageNumber": 688,
+    "year": 1965,
+    "isbn": "978-0-441-17271-9",
+    "genre": ["Science Fiction", "Space Opera", "Political Fiction"]
+  },
+  {
+    "author": "Jane Austen",
+    "title": "Pride and Prejudice",
+    "description": "A romantic novel following Elizabeth Bennet and her complex relationship with the proud Mr. Darcy in Regency-era England. A witty exploration of love, class, and social expectations.",
+    "pageNumber": 432,
+    "year": 1813,
+    "isbn": "978-0-14-143951-8",
+    "genre": ["Romance", "Classic Literature", "Social Commentary"]
+  },
+  {
+    "author": "Ray Bradbury",
+    "title": "Fahrenheit 451",
+    "description": "A dystopian novel set in a future where books are banned and burned by firemen. Guy Montag, a fireman, begins to question his role in society and the value of literature and free thought.",
+    "pageNumber": 249,
+    "year": 1953,
+    "isbn": "978-1-4516-7331-9",
+    "genre": ["Science Fiction", "Dystopian Fiction", "Social Commentary"]
+  },
+  {
+    "author": "Gabriel García Márquez",
+    "title": "One Hundred Years of Solitude",
+    "description": "A multigenerational saga of the Buendía family in the fictional town of Macondo. A masterpiece of magical realism that chronicles the rise and fall of a family and their town over a century.",
+    "pageNumber": 417,
+    "year": 1967,
+    "isbn": "978-0-06-088328-7",
+    "genre": ["Magical Realism", "Literary Fiction", "Latin American Literature"]
+  },
+  {
+    "author": "Toni Morrison",
+    "title": "Beloved",
+    "description": "A haunting novel about Sethe, a former slave haunted by the ghost of her deceased daughter. Set in post-Civil War Ohio, it explores the psychological trauma of slavery and the struggle for freedom and healing.",
+    "pageNumber": 324,
+    "year": 1987,
+    "isbn": "978-1-4000-3341-6",
+    "genre": ["Literary Fiction", "Historical Fiction", "African American Literature"]
+  },
+  {
+    "author": "Ursula K. Le Guin",
+    "title": "The Left Hand of Darkness",
+    "description": "A groundbreaking science fiction novel about Genly Ai, an envoy to the planet Gethen, whose inhabitants can change gender. A profound exploration of gender, politics, and human nature.",
+    "pageNumber": 304,
+    "year": 1969,
+    "isbn": "978-0-441-47812-5",
+    "genre": ["Science Fiction", "Feminist Literature", "Anthropological SF"]
+  },
+  {
+    "author": "Chinua Achebe",
+    "title": "Things Fall Apart",
+    "description": "Set in pre-colonial Nigeria, this novel follows Okonkwo, a respected warrior whose life is disrupted by the arrival of European colonizers. A powerful portrayal of the clash between traditional African culture and colonialism.",
+    "pageNumber": 209,
+    "year": 1958,
+    "isbn": "978-0-385-47454-2",
+    "genre": ["Literary Fiction", "Postcolonial Literature", "African Literature"]
+  },
+  {
+    "author": "Kurt Vonnegut",
+    "title": "Slaughterhouse-Five",
+    "description": "A dark comedy and anti-war novel following Billy Pilgrim, who becomes 'unstuck in time' and experiences his life non-linearly, including his experiences as a prisoner of war during the bombing of Dresden.",
+    "pageNumber": 275,
+    "year": 1969,
+    "isbn": "978-0-385-31208-2",
+    "genre": ["Literary Fiction", "Science Fiction", "Anti-war Literature"]
   }
 ]
