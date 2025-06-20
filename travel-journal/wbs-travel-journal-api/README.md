@@ -1,16 +1,7 @@
 # WBS Travel Journal API
+BLAHAHA
 
-Starter code for authentication/authorization module at WBS Coding School
-
-## Setup
-
-- Fork repo
-- Clone into your computer
-- `cd` into working directory
-- `npm i` to install dependencies
-- create a `.env` file with variables:
-  - `MONGO_URI` set to a valid MongoDB connection string.
-  - `PORT` ONLY in case you want to override the default `8000`
+lt `8000`
 
 ## Commands
 
