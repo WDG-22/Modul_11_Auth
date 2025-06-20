@@ -1,22 +1,24 @@
-import { useState } from 'react';
+import { AuthContext } from '@/context/AuthContext.jsx';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router';
 import { toast } from 'react-toastify';
 
 const Login = () => {
   const [{ email, password }, setForm] = useState({
     email: '',
-    password: ''
+    password: '',
   });
   const [loading, setLoading] = useState(false);
+  const { signin } = useContext(AuthContext);
 
-  const handleChange = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       if (!email || !password) throw new Error('All fields are required');
       setLoading(true);
-      console.log(email, password);
+      signin({ email, password });
     } catch (error) {
       toast.error(error.message);
     } finally {

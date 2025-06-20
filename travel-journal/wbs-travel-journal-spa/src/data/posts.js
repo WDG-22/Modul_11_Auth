@@ -15,7 +15,7 @@ export const getPosts = async () => {
   return data;
 };
 
-export const getSinglePost = async id => {
+export const getSinglePost = async (id) => {
   const res = await fetch(`${baseURL}/${id}`);
   if (!res.ok) {
     const errorData = await res.json();
@@ -28,13 +28,14 @@ export const getSinglePost = async id => {
   return data;
 };
 
-export const createPost = async formData => {
-  const res = await fetch(baseURL, {
+export const createPost = async (formData) => {
+  const res = await fetch(import.meta.env.VITE_APP_TRAVEL_JOURNAL_API_URL + `/posts`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(formData)
+    credentials: 'include',
+    body: JSON.stringify(formData),
   });
   if (!res.ok) {
     const errorData = await res.json();

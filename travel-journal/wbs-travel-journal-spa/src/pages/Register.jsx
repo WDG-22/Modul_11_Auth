@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { AuthContext } from '@/context/AuthContext.jsx';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router';
 import { toast } from 'react-toastify';
 
@@ -8,20 +9,22 @@ const Register = () => {
     lastName: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
   const [loading, setLoading] = useState(false);
 
-  const handleChange = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const { signup } = useContext(AuthContext);
 
-  const handleSubmit = async e => {
+  const handleChange = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       if (!firstName || !lastName || !email || !password || !confirmPassword)
         throw new Error('All fields are required');
       if (password !== confirmPassword) throw new Error('Passwords do not match');
       setLoading(true);
-      console.log(firstName, lastName, email, password, confirmPassword);
+      signup({ firstName, lastName, email, password });
     } catch (error) {
       toast.error(error.message);
     } finally {
