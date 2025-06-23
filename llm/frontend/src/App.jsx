@@ -31,15 +31,50 @@ function App() {
 	const [isImageGen, setIsImageGen] = useState(false);
 	const [base64img, setBase64img] = useState(null);
 
+	const handleImageGen = async () => {
+		try {
+			setAiResponse("");
+			setBase64img("");
+			const response = await fetch("http://localhost:8080/images", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ prompt }),
+			});
+
+			const { image } = await response.json();
+			const b64 = image.data[0].b64_json;
+			setBase64img(b64);
+		} catch (error) {
+			console.error("Error in image genearation: ", error);
+		} finally {
+			setPending(false);
+		}
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (isImageGen) {
 			handleImageGen();
 			return;
 		}
+
 		try {
 			setPending(true);
 			console.log("Work to be done");
+
+			const res = await fetch("http://localhost:8080/messages", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ prompt }),
+			});
+
+			const data = await res.json();
+			console.log(data);
+			setAiResponse(data.result);
 		} catch (error) {
 			console.error("Error ", error);
 		} finally {
@@ -54,7 +89,11 @@ function App() {
 
 	return (
 		<main className="h-screen p-2 mx-auto w-5xl flex flex-col items-center">
-			<form onSubmit={handleSubmit} className="flex w-full gap-2 items-end">
+			<form
+				onSubmit={handleSubmit}
+				className="flex w-full gap-2 items-end"
+				inert={pending}
+			>
 				<textarea
 					value={prompt}
 					onChange={(e) => setPrompt(e.target.value)}
@@ -86,12 +125,21 @@ function App() {
 				</div>
 			</form>
 			<div className="mockup-window border  w-full my-4 flex-1 overflow-y-auto text-start px-4 ">
-				{isImageGen && !base64img && (
+				{isImageGen && !base64img && pending && (
 					<div className="skeleton mask mask-squircle w-72 aspect-square" />
 				)}
 				{base64img && (
 					<div className="mask mask-squircle w-72">
-						<span>Generated image will be placed here</span>
+						<a
+							href={`data:image/png;base64,${base64img}`}
+							download={`${Date.now()}.png`}
+							title="Download"
+						>
+							<img
+								src={`data:image/png;base64,${base64img}`}
+								alt={`AI generation based on prompt: ${prompt}`}
+							/>
+						</a>
 					</div>
 				)}
 				<Markdown value={aiResponse} renderer={renderer} />
