@@ -62,9 +62,23 @@ function App() {
 
 		try {
 			setPending(true);
-			console.log("Work to be done");
 
-			const res = await fetch("http://localhost:8080/messages", {
+			// Variant Kein Stream
+			// const res = await fetch("http://localhost:8080/messages", {
+			// 	method: "POST",
+			// 	headers: {
+			// 		"Content-Type": "application/json",
+			// 	},
+			// 	body: JSON.stringify({ prompt }),
+			// });
+
+			// const data = await res.json();
+			// console.log(data);
+			// setAiResponse(data.result);
+
+			// Variante Stream
+
+			const res = await fetch("http://localhost:8080/messages/stream", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -72,9 +86,28 @@ function App() {
 				body: JSON.stringify({ prompt }),
 			});
 
-			const data = await res.json();
-			console.log(data);
-			setAiResponse(data.result);
+			if (!res.body) return;
+			const reader = res.body.getReader();
+			const decoder = new TextDecoder();
+
+			while (true) {
+				const { done, value } = await reader.read();
+				if (done) {
+					break;
+				}
+
+				const chunk = decoder.decode(value);
+
+				const lines = chunk.split("\n\n");
+
+				for (const line of lines) {
+					if (line.startsWith("data: ")) {
+						const data = line.slice(6);
+						const parsedText = JSON.parse(data);
+						setAiResponse((p) => p + parsedText);
+					}
+				}
+			}
 		} catch (error) {
 			console.error("Error ", error);
 		} finally {

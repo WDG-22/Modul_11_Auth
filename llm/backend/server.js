@@ -39,6 +39,39 @@ app.post("/messages", async (req, res) => {
 	res.json({ result: result.choices[0].message.content });
 });
 
+app.post("/messages/stream", async (req, res) => {
+	const { prompt } = req.body;
+
+	const result = await ai.chat.completions.create({
+		model: "gemini-2.0-flash-lite",
+		messages: [
+			{ role: "system", content: "You are a Senior Web Developer." },
+			{ role: "user", content: prompt },
+		],
+		stream: true,
+		// max_completion_tokens: 100,
+	});
+
+	// let content = "";
+
+	res.writeHead(200, {
+		"Content-Type": "text/event-stream",
+		Connection: "keep-alive",
+		"Cache-Control": "no-cache",
+	});
+
+	for await (const chunk of result) {
+		// content += chunk.choices[0].delta.content;
+		const text = chunk.choices[0].delta.content;
+		const jsonString = JSON.stringify(text);
+
+		res.write(`data: ${jsonString}\n\n`);
+	}
+
+	res.end();
+	res.on("close", () => res.end());
+});
+
 app.get("/models", async (req, res) => {
 	const list = await ai.models.list();
 	const models = [];
